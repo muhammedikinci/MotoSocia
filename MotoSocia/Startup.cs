@@ -31,6 +31,8 @@ namespace MotoSocia
 
             services.AddDbContext<IMotoDBContext, MotoDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MotoSociaDatabase")));
 
+            services.AddScoped<MotoDBContext>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
