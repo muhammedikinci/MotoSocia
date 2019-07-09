@@ -1,0 +1,11 @@
+C:\Users\muham\Source\Repos\MotoSocia\Infrastructure\bin\Debug\netcoreapp2.2\Infrastructure.deps.json
+C:\Users\muham\Source\Repos\MotoSocia\Infrastructure\bin\Debug\netcoreapp2.2\Infrastructure.dll
+C:\Users\muham\Source\Repos\MotoSocia\Infrastructure\bin\Debug\netcoreapp2.2\Infrastructure.pdb
+C:\Users\muham\Source\Repos\MotoSocia\Infrastructure\obj\Debug\netcoreapp2.2\Infrastructure.csprojAssemblyReference.cache
+C:\Users\muham\Source\Repos\MotoSocia\Infrastructure\obj\Debug\netcoreapp2.2\Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\muham\Source\Repos\MotoSocia\Infrastructure\obj\Debug\netcoreapp2.2\Infrastructure.AssemblyInfoInputs.cache
+C:\Users\muham\Source\Repos\MotoSocia\Infrastructure\obj\Debug\netcoreapp2.2\Infrastructure.AssemblyInfo.cs
+C:\Users\muham\Source\Repos\MotoSocia\Infrastructure\obj\Debug\netcoreapp2.2\Infrastructure.dll
+C:\Users\muham\Source\Repos\MotoSocia\Infrastructure\obj\Debug\netcoreapp2.2\Infrastructure.pdb
+C:\Users\muham\Source\Repos\MotoSocia\Infrastructure\bin\Debug\netcoreapp2.2\Infrastructure.runtimeconfig.json
+C:\Users\muham\Source\Repos\MotoSocia\Infrastructure\bin\Debug\netcoreapp2.2\Infrastructure.runtimeconfig.dev.json

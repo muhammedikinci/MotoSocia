@@ -1,0 +1,11 @@
+C:\Users\muham\Source\Repos\MotoSocia\Domain\bin\Debug\netcoreapp2.2\Domain.deps.json
+C:\Users\muham\Source\Repos\MotoSocia\Domain\bin\Debug\netcoreapp2.2\Domain.dll
+C:\Users\muham\Source\Repos\MotoSocia\Domain\bin\Debug\netcoreapp2.2\Domain.pdb
+C:\Users\muham\Source\Repos\MotoSocia\Domain\obj\Debug\netcoreapp2.2\Domain.csprojAssemblyReference.cache
+C:\Users\muham\Source\Repos\MotoSocia\Domain\obj\Debug\netcoreapp2.2\Domain.csproj.CoreCompileInputs.cache
+C:\Users\muham\Source\Repos\MotoSocia\Domain\obj\Debug\netcoreapp2.2\Domain.AssemblyInfoInputs.cache
+C:\Users\muham\Source\Repos\MotoSocia\Domain\obj\Debug\netcoreapp2.2\Domain.AssemblyInfo.cs
+C:\Users\muham\Source\Repos\MotoSocia\Domain\obj\Debug\netcoreapp2.2\Domain.dll
+C:\Users\muham\Source\Repos\MotoSocia\Domain\obj\Debug\netcoreapp2.2\Domain.pdb
+C:\Users\muham\Source\Repos\MotoSocia\Domain\bin\Debug\netcoreapp2.2\Domain.runtimeconfig.json
+C:\Users\muham\Source\Repos\MotoSocia\Domain\bin\Debug\netcoreapp2.2\Domain.runtimeconfig.dev.json
