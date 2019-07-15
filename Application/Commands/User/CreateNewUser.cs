@@ -2,21 +2,25 @@
 {
     public class CreateNewUser : Command
     {
-        IMotoDBContext _context;
-
-        public CreateNewUser(DataTransport dataObject) : base (dataObject)
+        public CreateNewUser(IMotoDBContext context, Models.User Data) : base (context, Data)
         {
 
         }
 
         public override void Execute()
         {
-            _context = DataObject._context;
+            var user = (Models.User)Data;
 
-            Domain.Entities.User UserData = (Domain.Entities.User)DataObject.Data;
+            context.Users.Add(new Domain.Entities.User
+            {
+                UserName = user.UserName,
+                Email = user.Email,
+                Name = user.Name,
+                Password = user.Password,
+                Surname = user.Surname
+            });
 
-            _context.Users.Add(UserData);
-            _context.SaveChanges();
+            context.SaveChanges();
         }
     }
 }

@@ -1,8 +1,41 @@
-﻿@{
+﻿@model Application.Models.User
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <div class="text-center">
+        <h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+        
+        <form action="/home/createnewuser" method="post" id="newuserform" data-parsley-validate="">
+            <div class="jumbotron">
+                <p id="newusererrorarea"></p>
+                <div class="form-group">
+                    <label>Kullanıcı Adı</label>
+
+                    <input type="text" name="UserName" id="username" value="" placeholder="Kullanıcı Adı" class="form-control" data-parsley-length="[8, 40]" data-parsley-group="block1" data-parsley-trigger="change" required="" />
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="Email" id="email" value="" placeholder="example@text.com" class="form-control" data-parsley-type="email" data-parsley-length="[5, 70]" data-parsley-group="block1" data-parsley-trigger="change" required="" />
+                </div>
+                <div class="form-group">
+                    <label>Ad</label>
+                    <input type="text" name="Name" id="name" value="" placeholder="Ad" class="form-control" data-parsley-length="[2, 50]" data-parsley-group="block1" data-parsley-trigger="change" required="" />
+                </div>
+                <div class="form-group">
+                    <label>Soyad</label>
+                    <input type="text" name="Surname" id="surname" value="" placeholder="Soyad" class="form-control" data-parsley-length="[2, 50]" data-parsley-group="block1" data-parsley-trigger="change" required="" />
+                </div>
+                <div class="form-group">
+                    <label>Şifre</label>
+                    <input type="password" name="Password" id="password" value="" placeholder="Şifre" class="form-control" data-parsley-length="[12, 50]" data-parsley-group="block1" data-parsley-trigger="change" required="" />
+                </div>
+                <div class="invalid-form-error-message"></div>
+                <div class="form-group">
+                    <input type="button" value="Yeni Kayıt" class="form-control validate" id="newuserbutton" />
+                </div>
+            </div>
+        </form>
+
+    </div>

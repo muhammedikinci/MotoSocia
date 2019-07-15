@@ -2,11 +2,13 @@
 {
     public abstract class Command
     {
-        protected DataTransport DataObject { get; set; }
+        protected IMotoDBContext context { get; set; }
+        protected object Data { get; set; }
 
-        public Command (DataTransport dataObject)
+        public Command (IMotoDBContext context, object Data)
         {
-            DataObject = dataObject;
+            this.Data = Data;
+            this.context = context;
         }
 
         public abstract void Execute();

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Application;
 using Application.Commands.User;
-using Domain.Entities;
+using Application.Models;
+using System.IO;
+using System.Text;
 
 namespace MotoSocia.Controllers
 {
@@ -22,22 +19,17 @@ namespace MotoSocia.Controllers
 
         public IActionResult Index()
         {
-            User full_user = new User()
-            {
-                Name = "Muhammed",
-                Surname = "ikinci",
-                Email = "muhammedikinci@outlook.com",
-                UserName = "muhammed2843",
-                Password = "1357911"
-            };
+            return View();
+        }
 
-            var Data = new DataTransport() { _context = _context, Data = full_user };
-            var CreateUserCommand = new CreateNewUser(Data);
+        public JsonResult CreateNewUser(User user)
+        {
+            CreateNewUser CreateNewUserCommand = new CreateNewUser(_context, user);
 
-            Inv = new Invoker(CreateUserCommand);
+            Inv = new Invoker(CreateNewUserCommand);
             Inv.Execute();
 
-            return View();
+            return new JsonResult("{\"type\": \"success\"}");
         }
 
         public IActionResult Privacy()
