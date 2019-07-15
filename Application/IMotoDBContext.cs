@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Domain.Entities;
-using System.Threading.Tasks;
-using System.Threading;
 
 namespace Application
 {
