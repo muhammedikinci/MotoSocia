@@ -34,3 +34,5 @@ C:\Users\muham\Source\Repos\MotoSocia\MotoSocia\bin\Debug\netcoreapp2.2\Applicat
 C:\Users\muham\Source\Repos\MotoSocia\MotoSocia\bin\Debug\netcoreapp2.2\Persistence.pdb
 C:\Users\muham\Source\Repos\MotoSocia\MotoSocia\bin\Debug\netcoreapp2.2\Domain.pdb
 C:\Users\muham\Source\Repos\MotoSocia\MotoSocia\obj\Debug\netcoreapp2.2\Razor\Views\User\SignUp.g.cshtml.cs
+C:\Users\muham\Source\Repos\MotoSocia\MotoSocia\obj\Debug\netcoreapp2.2\Razor\Views\User\SignIn.g.cshtml.cs
+C:\Users\muham\Source\Repos\MotoSocia\MotoSocia\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_PrintAlertPartial.g.cshtml.cs

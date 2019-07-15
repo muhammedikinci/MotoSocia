@@ -3,10 +3,10 @@
     ViewData["Title"] = "Kayıt Ol";
 }
 
-<form action="/home/createnewuser" method="post" id="newuserform" data-parsley-validate="">
+<form asp-controller="User" asp-action="CreateNewUser" method="post" id="newuserform" data-parsley-validate="">
     <div class="jumbotron">
         <h1>Kayıt Ol</h1>
-        <p>@ViewBag.Result</p>
+        <partial name="~/Views/Shared/_PrintAlertPartial.cshtml" />
         <div class="form-group">
             <label>Kullanıcı Adı</label>
 

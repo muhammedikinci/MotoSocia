@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Application;
 
 namespace MotoSocia.Controllers
 {
     public class HomeController : Controller
     {
+        [Route("/", Name = "homepage")]
         public IActionResult Index()
         {
             return View();

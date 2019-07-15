@@ -1,0 +1,8 @@
+﻿@if (ViewBag.Success == true)
+{
+    <p class="alert alert-success">@ViewBag.Message</p>
+}
+else if (ViewBag.Success == false)
+{
+    <p class="alert alert-danger">@ViewBag.Message</p>
+}
