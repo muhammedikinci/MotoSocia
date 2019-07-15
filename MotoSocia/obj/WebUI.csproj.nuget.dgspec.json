@@ -199,6 +199,10 @@
               "version": "[2.2.0, )",
               "autoReferenced": true
             },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[2.2.3, )"
+            },
             "PaulMiami.AspNetCore.Mvc.Recaptcha": {
               "target": "Package",
               "version": "[1.2.1, )"
