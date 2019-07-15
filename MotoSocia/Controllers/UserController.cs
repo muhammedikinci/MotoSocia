@@ -3,6 +3,11 @@ using Application.Commands.User;
 using Application.Models.User;
 using Microsoft.AspNetCore.Mvc;
 using PaulMiami.AspNetCore.Mvc.Recaptcha;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 namespace WebUI.Controllers
 {
@@ -16,11 +21,7 @@ namespace WebUI.Controllers
             _context = context;
         }
 
-        public IActionResult SignUp()
-        {
-            return View();
-        }
-
+        [Route("login")]
         public IActionResult SignIn()
         {
             return View();
@@ -28,15 +29,17 @@ namespace WebUI.Controllers
 
         [HttpPost]
         [ValidateRecaptcha]
-        public IActionResult Login(LoginUserModel user)
+        public async Task<IActionResult> Login(LoginUserModel user)
         {
             if (ModelState.IsValid)
             {
                 LoginCommand login = new LoginCommand(_context, user);
                 login.Execute();
 
-                if (login.IsLoggedIn)
+                if (login.LoggedInUserData != null)
                 {
+                    await SetLoginClaims(new NewUserModel() { Email = login.LoggedInUserData.Email, UserName = login.LoggedInUserData.UserName });
+
                     return RedirectToRoute("homepage");
                 }
                 else
@@ -55,9 +58,14 @@ namespace WebUI.Controllers
             }
         }
 
+        public IActionResult SignUp()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateRecaptcha]
-        public IActionResult CreateNewUser(NewUserModel user)
+        public async Task<IActionResult> CreateNewUser(NewUserModel user)
         {
 
             if (ModelState.IsValid)
@@ -67,9 +75,11 @@ namespace WebUI.Controllers
                 Inv = new Invoker(CreateNewUserCommand);
                 Inv.Execute();
 
-                ViewBag.Message = "Kaydınız Başarıyla Yapılmıştır.";
-                ViewBag.Success = true;
-                return View("SignUp");
+                await SetLoginClaims(user);
+
+                TempData["Message"] = "Kaydınız Başarıyla Yapılmıştır.";
+                TempData["Success"] = true;
+                return RedirectToRoute("homepage");
             }
             else
             {
@@ -77,6 +87,32 @@ namespace WebUI.Controllers
                 ViewBag.Success = false;
                 return View("SignUp");
             }
+        }
+
+        [Route("accessdenied")]
+        public IActionResult AccessDenied()
+        {
+            return RedirectToRoute("login");
+        }
+
+        public async Task<IActionResult> LogOut()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToRoute("homepage");
+        }
+
+        public async Task SetLoginClaims (NewUserModel user)
+        {
+            var claims = new List<Claim>   {
+                        new Claim(ClaimTypes.NameIdentifier, user.Email),
+                        new Claim(ClaimTypes.Name, user.UserName),
+                        new Claim(ClaimTypes.Email, user.Email),
+                    };
+
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(identity);
+
+            await HttpContext.SignInAsync(principal);
         }
     }
 }

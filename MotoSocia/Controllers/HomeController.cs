@@ -7,6 +7,9 @@ namespace MotoSocia.Controllers
         [Route("/", Name = "homepage")]
         public IActionResult Index()
         {
+            ViewBag.Message = TempData["Message"];
+            ViewBag.Success = TempData["Success"];
+
             return View();
         }
     }

@@ -14,11 +14,18 @@ namespace Application.Commands.User
         public override void Execute()
         {
             var Credentials = (LoginUserModel)Data;
-            var data = Context.Users.Where(_ => _.Password == Credentials.Password && _.UserName == Credentials.UserName);
+            var data = Context.Users.Where(_ => _.Password == Credentials.Password && _.UserName == Credentials.UserName).First();
 
-            IsLoggedIn = data.ToList().Count == 1;
+            if (data != null)
+            {
+                LoggedInUserData = new NewUserModel()
+                {
+                    UserName = data.UserName,
+                    Email = data.Email,
+                };
+            }
         }
 
-        public bool IsLoggedIn = false;
+        public NewUserModel LoggedInUserData;
     }
 }
