@@ -19,7 +19,7 @@ EF kullanımının asıl sağlayıcısı olan <b style="color: #239f95">Domain</
 </i>
 
 ## 2-Domain
-Entities, Value Objects, and Domain Services içerir ve izole bir yapıda olması gerekir.
+Entities, Value Objects, Domain Services içerir ve izole bir yapıda olması gerekir.
 
 ## 3-Infrastructure
 Servisleri içerir. (Mail, SMS, Payment)
@@ -33,7 +33,7 @@ WebPack İle Yüklenen Paketler;
 * Bootstrap
 * jQuery
 
-WebPack scriptleri bu proje altında Scripts klasöründe bulunur. Aynı şekilde WebPack in çalışması için kullanılan npm modullerininde sadece bu proje altına yüklenmesi gerekir. WebPack kodları proje içerisinde ./wwwroot/js/main.build.js dosyasına generate eder.
+WebPack scriptleri bu proje altında Scripts klasöründe bulunur. Aynı şekilde WebPack in çalışması için kullanılan npm modullerinin de sadece bu proje altına yüklenmesi gerekir. WebPack kodları proje içerisinde ./wwwroot/js/main.build.js dosyasına generate eder.
 
 Proje build aşamasına gelmeden önce WebPack in çalıştırılması için WebUI.csproj içerisinde aşağıda belirtilen kod bloğu bulunuyor.
 ```xml
