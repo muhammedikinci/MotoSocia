@@ -1,4 +1,4 @@
-﻿using Application;
+﻿using Application.CommandPattern;
 using Application.Commands.User;
 using Application.Models.User;
 using Microsoft.AspNetCore.Mvc;
