@@ -4,6 +4,7 @@ using Application.Commands.User;
 using Application.Models;
 using System.IO;
 using System.Text;
+using PaulMiami.AspNetCore.Mvc.Recaptcha;
 
 namespace MotoSocia.Controllers
 {
@@ -22,14 +23,26 @@ namespace MotoSocia.Controllers
             return View();
         }
 
-        public JsonResult CreateNewUser(User user)
+        [HttpPost]
+        [ValidateRecaptcha]
+        public IActionResult CreateNewUser(User user)
         {
-            CreateNewUser CreateNewUserCommand = new CreateNewUser(_context, user);
 
-            Inv = new Invoker(CreateNewUserCommand);
-            Inv.Execute();
+            if (ModelState.IsValid)
+            {
+                CreateNewUser CreateNewUserCommand = new CreateNewUser(_context, user);
 
-            return new JsonResult("{\"type\": \"success\"}");
+                Inv = new Invoker(CreateNewUserCommand);
+                Inv.Execute();
+
+                ViewBag.Result = "Başarılı";
+                return View("Index");
+            }
+            else
+            {
+                ViewBag.Result = "Başarısız";
+                return View("Index");
+            }
         }
 
         public IActionResult Privacy()

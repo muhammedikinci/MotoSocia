@@ -7,6 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Application;
 using Persistence;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using System;
+using PaulMiami.AspNetCore.Mvc.Recaptcha;
 
 namespace MotoSocia
 {
@@ -32,6 +35,12 @@ namespace MotoSocia
             services.AddDbContext<IMotoDBContext, MotoDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MotoSociaDatabase")));
 
             services.AddScoped<MotoDBContext>();
+
+            services.AddRecaptcha(new RecaptchaOptions
+            {
+                SiteKey = Configuration["Recaptcha:SiteKey"],
+                SecretKey = Configuration["Recaptcha:SecretKey"]
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

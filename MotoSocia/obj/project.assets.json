@@ -2746,6 +2746,24 @@
           "lib/netstandard1.3/Newtonsoft.Json.Bson.dll": {}
         }
       },
+      "PaulMiami.AspNetCore.Mvc.Recaptcha/1.2.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Localization": "1.0.2",
+          "Microsoft.AspNetCore.Mvc.Abstractions": "1.0.3",
+          "Microsoft.AspNetCore.Mvc.Core": "1.0.3",
+          "Microsoft.AspNetCore.Mvc.ViewFeatures": "1.0.3",
+          "Microsoft.AspNetCore.Razor.Runtime": "1.0.2",
+          "NETStandard.Library": "1.6.0",
+          "Newtonsoft.Json": "9.0.1"
+        },
+        "compile": {
+          "lib/netstandard1.6/PaulMiami.AspNetCore.Mvc.Recaptcha.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/PaulMiami.AspNetCore.Mvc.Recaptcha.dll": {}
+        }
+      },
       "Remotion.Linq/2.2.0": {
         "type": "package",
         "dependencies": {
@@ -7418,6 +7436,19 @@
         "lib/netstandard1.3/Newtonsoft.Json.Bson.xml",
         "newtonsoft.json.bson.1.0.1.nupkg.sha512",
         "newtonsoft.json.bson.nuspec"
+      ]
+    },
+    "PaulMiami.AspNetCore.Mvc.Recaptcha/1.2.1": {
+      "sha512": "VymvFmPnyBHUq7+/xr+6C9rG4ZiBMyIJBjboUQgYzvRYRsx7rScje7k88Nm6pNZUJ2/N3cr/14YYTmpIUe/mjQ==",
+      "type": "package",
+      "path": "paulmiami.aspnetcore.mvc.recaptcha/1.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net451/PaulMiami.AspNetCore.Mvc.Recaptcha.dll",
+        "lib/netstandard1.6/PaulMiami.AspNetCore.Mvc.Recaptcha.dll",
+        "paulmiami.aspnetcore.mvc.recaptcha.1.2.1.nupkg.sha512",
+        "paulmiami.aspnetcore.mvc.recaptcha.nuspec"
       ]
     },
     "Remotion.Linq/2.2.0": {
@@ -12199,6 +12230,7 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 2.2.4",
       "Microsoft.EntityFrameworkCore.Tools >= 2.2.4",
       "Microsoft.NETCore.App >= 2.2.0",
+      "PaulMiami.AspNetCore.Mvc.Recaptcha >= 1.2.1",
       "Persistence >= 1.0.0"
     ]
   },
@@ -12276,6 +12308,10 @@
             "target": "Package",
             "version": "[2.2.0, )",
             "autoReferenced": true
+          },
+          "PaulMiami.AspNetCore.Mvc.Recaptcha": {
+            "target": "Package",
+            "version": "[1.2.1, )"
           }
         },
         "imports": [

@@ -178,10 +178,6 @@
               "version": "[2.2.0, )",
               "autoReferenced": true
             },
-            "Microsoft.AspNetCore.Blazor.Templates": {
-              "target": "Package",
-              "version": "[0.7.0, )"
-            },
             "Microsoft.AspNetCore.Razor.Design": {
               "suppressParent": "All",
               "target": "Package",
@@ -202,6 +198,10 @@
               "target": "Package",
               "version": "[2.2.0, )",
               "autoReferenced": true
+            },
+            "PaulMiami.AspNetCore.Mvc.Recaptcha": {
+              "target": "Package",
+              "version": "[1.2.1, )"
             }
           },
           "imports": [

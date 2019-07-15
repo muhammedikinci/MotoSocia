@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "55b0888e3223ceb87581ed0f3898c76d5c5e31fc"
+    "signature": "461fb5abfa0a3f4b39e896fe8c819f35c9211623"
   },
   "compilationOptions": {
     "defines": [
@@ -30,6 +30,7 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "2.2.4",
           "Microsoft.EntityFrameworkCore.Tools": "2.2.4",
           "Microsoft.NETCore.App": "2.2.0",
+          "PaulMiami.AspNetCore.Mvc.Recaptcha": "1.2.1",
           "Persistence": "1.0.0"
         },
         "runtime": {
@@ -121,6 +122,26 @@
       "Microsoft.EntityFrameworkCore.Tools/2.2.4": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Design": "2.2.4"
+        }
+      },
+      "PaulMiami.AspNetCore.Mvc.Recaptcha/1.2.1": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Localization": "2.2.0",
+          "Microsoft.AspNetCore.Mvc.Abstractions": "2.2.0",
+          "Microsoft.AspNetCore.Mvc.Core": "2.2.0",
+          "Microsoft.AspNetCore.Mvc.ViewFeatures": "2.2.0",
+          "Microsoft.AspNetCore.Razor.Runtime": "2.2.0",
+          "NETStandard.Library": "2.0.3",
+          "Newtonsoft.Json": "11.0.2"
+        },
+        "runtime": {
+          "lib/netstandard1.6/PaulMiami.AspNetCore.Mvc.Recaptcha.dll": {
+            "assemblyVersion": "1.2.1.0",
+            "fileVersion": "1.2.1.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.6/PaulMiami.AspNetCore.Mvc.Recaptcha.dll": {}
         }
       },
       "Remotion.Linq/2.2.0": {
@@ -3350,6 +3371,13 @@
       "sha512": "sha512-9n1Mv6FrFmlVkkXVkO7U71GG42CfRjlKV0bca++UYjsmmtVVds4PhUjgVrHCh3ZTRI4jqBc5Y7trUvwdwXisPw==",
       "path": "microsoft.entityframeworkcore.tools/2.2.4",
       "hashPath": "microsoft.entityframeworkcore.tools.2.2.4.nupkg.sha512"
+    },
+    "PaulMiami.AspNetCore.Mvc.Recaptcha/1.2.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VymvFmPnyBHUq7+/xr+6C9rG4ZiBMyIJBjboUQgYzvRYRsx7rScje7k88Nm6pNZUJ2/N3cr/14YYTmpIUe/mjQ==",
+      "path": "paulmiami.aspnetcore.mvc.recaptcha/1.2.1",
+      "hashPath": "paulmiami.aspnetcore.mvc.recaptcha.1.2.1.nupkg.sha512"
     },
     "Remotion.Linq/2.2.0": {
       "type": "package",
