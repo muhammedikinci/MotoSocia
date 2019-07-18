@@ -26,5 +26,3 @@ for (var i = 0; i < formsDataToBeValidation.length; ++i) {
         });
     }
 }
-
-formsDataToBeValidation.forEach((e) => { console.log(e); });
