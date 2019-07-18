@@ -7,16 +7,12 @@
 
 ## 1-Application
 <p>
-Bu projede diğer projelerde kullanılacak olan Interface ve Models lar bulunur. EntityFramework için bir <span style="color: tomato">IMotoDBContext</span> Interface i bulunur. Bu Interface <b style="color: #239f95">Persistence</b> içerisinde EF kullanımı için <span style="color: tomato">MotoDBContext</span> olarak <span style="color: tomato">DbContext</span> ile beraber türetilir.
+Bu projede diğer projelerde kullanılacak olan Interface ve Models lar bulunur. <br>
+<span style="color: tomato">IMotoDBContext</span> Interface i barındırır.<br>Bu Interface <b style="color: #239f95">Persistence</b> projesi içerisinde <span style="color: tomato">MotoDBContext</span> olarak <span style="color: tomato">DbContext</span> ile beraber türetilir.
 </p> 
-
 <p>
-EF kullanımının asıl sağlayıcısı olan <b style="color: #239f95">Domain</b> projesi <b style="color: #239f95">Application</b> dışında hiçbir yapı ile iletişime geçmemesi gerektiği ve <span style="color: tomato">Controller</span> tarafından EF Context ine loose-coupling erişim olması gerektiğinden <b style="color: #239f95">Application</b> içerisinde Command Pattern kullanılmıştır.
-</p>
-
-<i>
 <b style="color: #239f95">Domain</b> içerisinde bulunan Entities lara erişimin kısıtlanması Models yapılarının <b style="color: #239f95">Application</b> içierisinde oluşturulmasını gerektiriyor.
-</i>
+</p>
 
 ## 2-Domain
 Entities, Value Objects, Domain Services içerir ve izole bir yapıda olması gerekir.
