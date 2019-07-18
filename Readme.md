@@ -1,4 +1,18 @@
 # MotoSocia
+
+## Ayağa Kaldırma
+```sh
+$ git clone https://github.com/muhammedikinci/MotoSocia.git
+
+$ cd MotoSocia/MotoSocia
+
+$ npm install
+
+$ dotnet run
+```
+
+## Proje Yapısı
+
 * <b style="color: #239f95">Application</b>
 * <b style="color: #239f95">Domain</b>
 * <b style="color: #239f95">Infrastructure</b>
