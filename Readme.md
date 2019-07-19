@@ -8,6 +8,8 @@ $ cd MotoSocia/MotoSocia
 
 $ npm install
 
+~$ npm install --global webpack
+
 $ dotnet run
 ```
 
@@ -48,7 +50,7 @@ WebPack scriptleri bu proje altında Scripts klasöründe bulunur. Aynı şekild
 Proje build aşamasına gelmeden önce WebPack in çalıştırılması için WebUI.csproj içerisinde aşağıda belirtilen kod bloğu bulunuyor.
 ```xml
 <Target Name="MyPreCompileTarget" BeforeTargets="BeforeBuild">
-    <Exec Command="webpack" />
+    <Exec Command="npm run build" />
 </Target>
 ```
 
