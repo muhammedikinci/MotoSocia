@@ -13,6 +13,13 @@ $ npm install
 $ dotnet run
 ```
 
+Veritabanı işlemlerinin çalışması için MotoSocia klasörü altında ki appsettings.json dosyası içerisinde bulunan ConnectionStrings in düzenlenmesi gerekiyor.
+```json
+"ConnectionStrings": {
+    "MotoSociaDatabase": "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MotoSocia;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+},
+```
+
 ## Proje Yapısı
 
 * <b style="color: #239f95">Application</b>
