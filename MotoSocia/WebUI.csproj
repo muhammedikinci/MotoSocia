@@ -22,7 +22,7 @@
     <PackageReference Include="PaulMiami.AspNetCore.Mvc.Recaptcha" Version="1.2.1" />
   </ItemGroup>
   <Target Name="MyPreCompileTarget" BeforeTargets="BeforeBuild">
-    <Exec Command="webpack" />
+    <Exec Command="npm run build" />
   </Target>
 
   <ItemGroup>
