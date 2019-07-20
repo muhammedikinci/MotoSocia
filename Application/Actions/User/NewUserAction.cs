@@ -1,9 +1,9 @@
 ﻿using Application.Models.User;
-using Domain.Entities;
+using Application.Command;
 
 namespace Application.Actions.User
 {
-    public class NewUserAction
+    public class NewUserAction : ICommand
     {
         private IMotoDBContext Context { get; set; }
         private NewUserModel User { get; set; }
@@ -14,7 +14,7 @@ namespace Application.Actions.User
             this.User = User;
         }
 
-        public void Action()
+        public void Execute()
         {
             Context.Users.Add(new Domain.Entities.User
             {

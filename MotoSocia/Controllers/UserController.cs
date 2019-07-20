@@ -1,6 +1,6 @@
-﻿using Application.CommandPattern;
-using Application.Commands.User;
+﻿using Application.Command;
 using Application.Models.User;
+using Application.Actions.User;
 using Microsoft.AspNetCore.Mvc;
 using PaulMiami.AspNetCore.Mvc.Recaptcha;
 using System.Threading.Tasks;
@@ -14,7 +14,6 @@ namespace WebUI.Controllers
     public class UserController : Controller
     {
         private Persistence.MotoDBContext _context;
-        private Invoker Inv;
 
         public UserController(Persistence.MotoDBContext context)
         {
@@ -33,12 +32,13 @@ namespace WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                LoginCommand login = new LoginCommand(_context, user);
-                login.Execute();
+                var loginAction = new LoginAction(_context, user);
+                var command = new Invoker<LoginAction>(loginAction);
+                command.Invoke();
 
-                if (login.LoggedInUserData != null)
+                if (loginAction.LoggedInUserData != null)
                 {
-                    await SetLoginClaims(new NewUserModel() { Email = login.LoggedInUserData.Email, UserName = login.LoggedInUserData.UserName });
+                    await SetLoginClaims(new NewUserModel() { Email = loginAction.LoggedInUserData.Email, UserName = loginAction.LoggedInUserData.UserName });
 
                     return RedirectToRoute("homepage");
                 }
@@ -70,10 +70,9 @@ namespace WebUI.Controllers
 
             if (ModelState.IsValid)
             {
-                NewUserCommand CreateNewUserCommand = new NewUserCommand(_context, user);
-
-                Inv = new Invoker(CreateNewUserCommand);
-                Inv.Execute();
+                var newUserAction = new NewUserAction(_context, user);
+                var command = new Invoker<NewUserAction>(newUserAction);
+                command.Invoke();
 
                 await SetLoginClaims(user);
 
