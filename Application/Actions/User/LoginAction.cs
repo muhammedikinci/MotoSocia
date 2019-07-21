@@ -18,7 +18,7 @@ namespace Application.Actions.User
 
         public void Execute()
         {
-            var data = Context.Users.Where(_ => _.Password == User.Password && _.UserName == User.UserName).First();
+            var data = Context.Users.Where(_ => _.Password == User.Password && _.UserName == User.UserName).FirstOrDefault();
 
             if (data != null)
             {
