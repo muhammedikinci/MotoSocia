@@ -1,5 +1,6 @@
 ﻿using Application.Models.User;
 using Application.Command;
+using System.Linq;
 
 namespace Application.Actions.User
 {
@@ -14,18 +15,31 @@ namespace Application.Actions.User
             this.User = User;
         }
 
+        public bool Result = false;
+
         public void Execute()
         {
-            Context.Users.Add(new Domain.Entities.User
-            {
-                UserName = User.UserName,
-                Email = User.Email,
-                Name = User.Name,
-                Password = User.Password,
-                Surname = User.Surname
-            });
+            var data = Context.Users.Where(_ => _.UserName == User.UserName).FirstOrDefault();
 
-            Context.SaveChanges();
+            if (data == null && 
+                User != null && 
+                !string.IsNullOrEmpty(User.UserName) &&
+                !string.IsNullOrEmpty(User.Password) &&
+                !string.IsNullOrEmpty(User.Surname) &&
+                !string.IsNullOrEmpty(User.Name))
+            {
+                Context.Users.Add(new Domain.Entities.User
+                {
+                    UserName = User.UserName,
+                    Email = User.Email,
+                    Name = User.Name,
+                    Password = User.Password,
+                    Surname = User.Surname
+                });
+
+                Context.SaveChanges();
+                Result = true;
+            }
         }
     }
 }
