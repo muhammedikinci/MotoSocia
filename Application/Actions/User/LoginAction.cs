@@ -32,6 +32,9 @@ namespace Application.Actions.User
             {
                 LoggedInUserData = new NewUserModel();
             }
+
+            DatabaseLog databaseLog = new DatabaseLog();
+            databaseLog.Write<LoginAction, DatabaseLog>(data != null);
         }
     }
 }

@@ -9,9 +9,7 @@
     }
 ];
 
-for (var i = 0; i < formsDataToBeValidation.length; ++i) {
-    var formData = formsDataToBeValidation[i];
-
+formsDataToBeValidation.forEach((formData) => {
     if ($(formData.formSelector).length > 0) {
         $(formData.formSelector).parsley().on('field:validated', function () {
             var ok = $('.parsley-error').length === 0;
@@ -25,4 +23,4 @@ for (var i = 0; i < formsDataToBeValidation.length; ++i) {
             }
         });
     }
-}
+});

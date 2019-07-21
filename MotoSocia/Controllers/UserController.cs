@@ -36,7 +36,9 @@ namespace WebUI.Controllers
                 var command = new Invoker<LoginAction>(loginAction);
                 command.Invoke();
 
-                if (loginAction.LoggedInUserData != null)
+                if (loginAction.LoggedInUserData != null && 
+                    !string.IsNullOrEmpty(loginAction.LoggedInUserData.UserName) &&
+                    !string.IsNullOrEmpty(loginAction.LoggedInUserData.Email))
                 {
                     await SetLoginClaims(new NewUserModel() { Email = loginAction.LoggedInUserData.Email, UserName = loginAction.LoggedInUserData.UserName });
 

@@ -6,7 +6,6 @@
 <form asp-controller="User" asp-action="Login" method="post" id="loginuserform" data-parsley-validate="">
     <div class="jumbotron">
         <h1>Giriş Yap</h1>
-        <partial name="~/Views/Shared/_PrintAlertPartial.cshtml" />
         <div class="form-group">
             <label>Kullanıcı Adı</label>
             <input type="text" name="UserName" id="username" value="" placeholder="Kullanıcı Adı" class="form-control" data-parsley-length="[8, 40]" data-parsley-group="block1" data-parsley-trigger="change" required="" />

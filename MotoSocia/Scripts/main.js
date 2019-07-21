@@ -7,5 +7,5 @@ import 'parsleyjs';
 import 'parsleyjs/src/parsley.css';
 
 // External
-import './parsleyLocales';
 import './parsleyValidationListeners';
+import './parsleyLocales';

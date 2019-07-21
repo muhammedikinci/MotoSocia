@@ -40,6 +40,9 @@ namespace Application.Actions.User
                 Context.SaveChanges();
                 Result = true;
             }
+
+            DatabaseLog databaseLog = new DatabaseLog();
+            databaseLog.Write<LoginAction, DatabaseLog>(Result);
         }
     }
 }
