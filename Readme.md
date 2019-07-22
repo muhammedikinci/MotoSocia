@@ -10,6 +10,14 @@ $ npm install
 
 ~$ npm install --global webpack
 
+~$ cd ../
+
+~$ dotnet ef migrations add changemodel --context Persistence.MotoDBContext --output-dir Migrations --project Persistence -s MotoSocia
+
+~$ dotnet ef database update changemodel --context Persistence.MotoDBContext --project Persistence -s MotoSocia
+
+~$ cd MotoSocia
+
 $ dotnet run
 ```
 
@@ -42,6 +50,13 @@ Entities, Value Objects, Domain Services içerir ve izole bir yapıda olması ge
 
 ## 3-Infrastructure
 Servisleri içerir. (Mail, SMS, Payment)
+
+Mail için SendGrid kullanılıyor. APIKey girmek için appsettings.json -> SendGridEmailService -> APIKey objesine inmek gerekiyor.
+```json
+  "SendGridEmailService": {
+    "APIKey":  "SENDGRIDAPIKEY"
+  },
+```
 
 ## 4-WebUI
 MVC Sistemini içerir. Front-End için npm üzerinden WebPack kullanır.
