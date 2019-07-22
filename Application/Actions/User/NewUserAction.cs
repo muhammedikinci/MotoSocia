@@ -41,8 +41,7 @@ namespace Application.Actions.User
                 Result = true;
             }
 
-            DatabaseLog databaseLog = new DatabaseLog();
-            databaseLog.Write<LoginAction, DatabaseLog>(Result);
+            Log.Write<NewUserAction, DatabaseLog>(Result);
         }
     }
 }

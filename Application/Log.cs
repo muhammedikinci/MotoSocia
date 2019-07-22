@@ -5,7 +5,7 @@ namespace Application
 {
     public class Log
     {
-        public void Write<TEventType, TLogType>(bool result) where TEventType : ICommand where TLogType : Log
+        public static void Write<TEventType, TLogType>(bool result) where TEventType : ICommand where TLogType : Log
         {
             Console.WriteLine($"[]Event type : {typeof(TEventType)} \n[]LogType {typeof(TLogType)} \n[]Process Result {result}");
         }
@@ -13,6 +13,6 @@ namespace Application
 
     public class DatabaseLog : Log
     {
-
+        
     }
 }
