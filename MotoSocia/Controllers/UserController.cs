@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
+using Infrastructure.Email;
 
 namespace WebUI.Controllers
 {
@@ -28,6 +29,7 @@ namespace WebUI.Controllers
 
         [HttpPost]
         [ValidateRecaptcha]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginUserModel user)
         {
             if (ModelState.IsValid)
@@ -67,19 +69,41 @@ namespace WebUI.Controllers
 
         [HttpPost]
         [ValidateRecaptcha]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateNewUser(NewUserModel user)
         {
-
             if (ModelState.IsValid)
             {
                 var newUserAction = new NewUserAction(_context, user);
                 var command = new Invoker<NewUserAction>(newUserAction);
+
                 command.Invoke();
+                
+                if (newUserAction.Result)
+                {
+                    SendGrid.Response mailResponse = await EmailService.SendMail<ConfirmMail>(user.Email, user.Name, user.Surname);
 
-                await SetLoginClaims(user);
+                    if (mailResponse.StatusCode == System.Net.HttpStatusCode.Accepted)
+                    {
+                        TempData["Message"] = "Kaydınız başarıyla oluşturuldu.";
+                        TempData["Success"] = true;
 
-                TempData["Message"] = "Kaydınız Başarıyla Yapılmıştır.";
-                TempData["Success"] = true;
+                        await SetLoginClaims(user);
+                    }
+                    else
+                    {
+                        var body = await mailResponse.Body.ReadAsStringAsync();
+
+                        TempData["Message"] = "Kaydınız başarıyla oluşturuldu. Doğrulama maili gönderme sırasında hata algılandı. \n" + body;
+                        TempData["Success"] = false;
+                    }
+                }
+                else
+                {
+                    TempData["Message"] = "Kayıt sırasında bir hata oluştu!";
+                    TempData["Success"] = false;
+                }
+
                 return RedirectToRoute("homepage");
             }
             else

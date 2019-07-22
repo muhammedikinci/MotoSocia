@@ -6,6 +6,7 @@
 <form asp-controller="User" asp-action="CreateNewUser" method="post" id="newuserform" data-parsley-validate="">
     <div class="jumbotron">
         <h1>Kayıt Ol</h1>
+        @Html.AntiForgeryToken()
         <div class="form-group">
             <label>Kullanıcı Adı</label>
             <input type="text" name="UserName" id="username" value="" placeholder="Kullanıcı Adı" class="form-control" data-parsley-length="[8, 40]" data-parsley-group="block1" data-parsley-trigger="change" required="" />

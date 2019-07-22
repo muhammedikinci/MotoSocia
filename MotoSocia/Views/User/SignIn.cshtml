@@ -5,6 +5,7 @@
 
 <form asp-controller="User" asp-action="Login" method="post" id="loginuserform" data-parsley-validate="">
     <div class="jumbotron">
+        @Html.AntiForgeryToken()
         <h1>Giriş Yap</h1>
         <div class="form-group">
             <label>Kullanıcı Adı</label>
