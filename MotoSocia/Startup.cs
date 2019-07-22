@@ -33,6 +33,9 @@ namespace MotoSocia
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            // Email service start
+            Infrastructure.Email.EmailService.client = new SendGrid.SendGridClient(Configuration["SendGridEmailService:APIKey"]);
+
             services.AddDbContext<IMotoDBContext, MotoDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MotoSociaDatabase")));
 
             services.AddScoped<MotoDBContext>();
