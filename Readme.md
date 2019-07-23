@@ -59,7 +59,11 @@ Mail için SendGrid kullanılıyor. APIKey girmek için appsettings.json -> Send
 ```
 
 ## 4-WebUI
-MVC Sistemini içerir. Front-End için npm üzerinden WebPack kullanır.
+MVC Sistemini içerir. 
+
+Form validasyonları için ParsLeyJS in yanında Recaptcha ve güvenliği arttırmak için AntiForgeryToken kullanılıyor.
+
+Front-End için npm üzerinden WebPack kullanır.
 
 WebPack İle Yüklenen Paketler;
 * ParsleyJS (Front-End Form Validation)
