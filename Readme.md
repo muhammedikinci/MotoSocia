@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://github.com/muhammedikinci/MotoSocia/blob/master/MotoSocia/wwwroot/img/motosocia-logo-with-text.png" width="400px" height="400px" />
+<img src="https://github.com/muhammedikinci/MotoSocia/blob/master/MotoSocia/wwwroot/img/motosocia-logo-with-text.png" width="300px" height="300px" />
 </p>
 
 ## Ayağa Kaldırma
