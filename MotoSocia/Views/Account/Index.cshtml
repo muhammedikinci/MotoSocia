@@ -1,0 +1,11 @@
+﻿@model Application.Models.User.NewUserModel
+@{
+    ViewData["Title"] = "Hesabım";
+}
+
+<h1>Hesabım</h1>
+
+<p>Hoşgeldin @Model.UserName</p>
+
+<a class="btn btn-primary" asp-controller="Account" asp-action="EditProfile">Biglileri Düzenle</a>
+
