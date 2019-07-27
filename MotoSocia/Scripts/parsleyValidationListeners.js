@@ -6,6 +6,10 @@
     {
         "buttonSelector": "#loginuserbutton",
         "formSelector": "#loginuserform"
+    },
+    {
+        "buttonSelector": "#editprofilebutton",
+        "formSelector": "#editprofileform"
     }
 ];
 
