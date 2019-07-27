@@ -2,6 +2,10 @@
 <img src="https://github.com/muhammedikinci/MotoSocia/blob/master/MotoSocia/wwwroot/img/MotoSocia%20Logo%20Test%201.png" width="500px" height="200px" />
 </p>
 
+<br/>
+
+<p align="center"><a href="https://trello.com/b/NFdach5G/myaccount-component">Trello Board</a></p>
+
 ## Ayağa Kaldırma
 ```sh
 // Repo yu klonla
