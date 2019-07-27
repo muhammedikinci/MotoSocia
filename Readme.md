@@ -21,10 +21,10 @@ $ npm install
 ~$ dotnet ef migrations add changemodel --context Persistence.MotoDBContext --output-dir Migrations --project Persistence -s MotoSocia
 ~$ dotnet ef database update changemodel --context Persistence.MotoDBContext --project Persistence -s MotoSocia
 
-MVC projesine dön
+// MVC projesine dön
 ~$ cd MotoSocia
 
-Çalıştır
+// Çalıştır
 $ dotnet run
 ```
 
