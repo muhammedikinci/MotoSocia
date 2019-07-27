@@ -2,31 +2,46 @@
 
 ## Ayağa Kaldırma
 ```sh
+// Repo yu klonla
 $ git clone https://github.com/muhammedikinci/MotoSocia.git
 
+// MVC projesine git
 $ cd MotoSocia/MotoSocia
 
+// NPM bağımlılıklarını yükle
 $ npm install
 
+// Yoksa Webpack i global olarak yükle
 ~$ npm install --global webpack
 
+// Ana klasöre dön
 ~$ cd ../
 
+// İhtiyaç varsa entity framework ile migration oluştur ve veritabanına uygula
 ~$ dotnet ef migrations add changemodel --context Persistence.MotoDBContext --output-dir Migrations --project Persistence -s MotoSocia
-
 ~$ dotnet ef database update changemodel --context Persistence.MotoDBContext --project Persistence -s MotoSocia
 
+MVC projesine dön
 ~$ cd MotoSocia
 
+Çalıştır
 $ dotnet run
 ```
 
-Veritabanı işlemlerinin çalışması için MotoSocia klasörü altında ki appsettings.json dosyası içerisinde bulunan ConnectionStrings in düzenlenmesi gerekiyor.
+Veritabanı Connection String leri appsettings.json içerisinde ki ConnectionStrings altında bulunur.
 ```json
 "ConnectionStrings": {
-    "MotoSociaDatabase": "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=MotoSocia;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+    "MotoSociaDatabase": "Connection String"
 },
 ```
+
+## Teknolojiler
+* ASP.NET Core App (2.2.6)
+* Entity FrameWork Core (2.2.6)
+* xUnit (2.4.1)
+* SendGrid (9.11.0)
+* PaulMiami Recaptcha (1.2.1)(Google Recaptcha v2)
+* NPM (6.9.2)
 
 ## Proje Yapısı
 
@@ -51,6 +66,8 @@ Entities, Value Objects, Domain Services içerir ve izole bir yapıda olması ge
 ## 3-Infrastructure
 Servisleri içerir. (Mail, SMS, Payment)
 
+<img src="https://sendgrid.com/brand/sg-twilio/sg-twilio-lockup.svg" width="200" height="50" />
+
 Mail için SendGrid kullanılıyor. APIKey girmek için appsettings.json -> SendGridEmailService -> APIKey objesine inmek gerekiyor.
 ```json
   "SendGridEmailService": {
@@ -63,6 +80,7 @@ MVC Sistemini içerir.
 
 Form validasyonları için ParsLeyJS in yanında Recaptcha ve güvenliği arttırmak için AntiForgeryToken kullanılıyor.
 
+<img src="https://webpack.js.org/e0b5805d423a4ec9473ee315250968b2.svg" width="200" height="50" />
 Front-End için npm üzerinden WebPack kullanır.
 
 WebPack İle Yüklenen Paketler;
