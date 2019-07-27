@@ -2,10 +2,6 @@
 <img src="https://github.com/muhammedikinci/MotoSocia/blob/master/MotoSocia/wwwroot/img/MotoSocia%20Logo%20Test%201.png" width="500px" height="200px" />
 </p>
 
-<br/>
-
-<p align="center"><a href="https://trello.com/b/NFdach5G/myaccount-component">Trello Board</a></p>
-
 ## Ayağa Kaldırma
 ```sh
 // Repo yu klonla
@@ -106,3 +102,9 @@ Proje build aşamasına gelmeden önce WebPack in çalıştırılması için Web
 
 ## 4-Persistence
 <b style="color: #239f95">Application</b> katmanı tarafından etkileşimler için kullanılır ve Migrationlar burada tutulur. 
+<hr>
+<p align="center">
+    <a href="https://trello.com/b/NFdach5G/myaccount-component"><b>Trello Board</b></a>
+    |
+    <a href="https://www.gimp.org"><b>Logo Gimp ile hazırlandı</b><img src="https://www.gimp.org/images/frontpage/wilber-big.png" height="50px" width="50px" /></a>
+</p>
