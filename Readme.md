@@ -1,4 +1,6 @@
-# MotoSocia
+<p align="center">
+<img src="https://github.com/muhammedikinci/MotoSocia/blob/master/MotoSocia/wwwroot/img/MotoSocia%20Logo%20Test%201.png" width="500px" height="200px" />
+</p>
 
 ## Ayağa Kaldırma
 ```sh
