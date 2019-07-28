@@ -19,7 +19,10 @@ namespace Application.Actions.Account
 
         public void Execute()
         {
-            var userData = context.Users.Where(_ => _.Email == user.Email && _.UserName == user.UserName).First();
+            if (context == null || user == null || string.IsNullOrEmpty(user.Email) || string.IsNullOrEmpty(user.UserName))
+                return;
+
+            var userData = context.Users.Where(_ => _.Email == user.Email && _.UserName == user.UserName).FirstOrDefault();
 
             if (userData != null &&
                 !string.IsNullOrEmpty(userData.UserName) &&
