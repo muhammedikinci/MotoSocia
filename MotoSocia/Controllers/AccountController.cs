@@ -1,4 +1,4 @@
-﻿using Application.Command;
+﻿using Application;
 using Microsoft.AspNetCore.Mvc;
 using Application.Actions.Account;
 using Microsoft.AspNetCore.Authorization;
@@ -11,19 +11,18 @@ namespace WebUI.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private Persistence.MotoDBContext _context;
+        private Application.ICommander _commander;
 
-        public AccountController(Persistence.MotoDBContext context)
+        public AccountController(ICommander commander)
         {
-            _context = context;
+            _commander = commander;
         }
 
         public IActionResult Index()
         {
-            var getCurrentClaims = new GetCurrentClaims(HttpContext.User.Claims);
-            var command = new Invoker<GetCurrentClaims>(getCurrentClaims);
+            _commander.ExecuteWithoutContext<GetCurrentClaims, object>(HttpContext.User.Claims);
 
-            command.Invoke();
+            var getCurrentClaims = _commander.GetInstance<GetCurrentClaims>();
 
             return View(getCurrentClaims.User);
         }
@@ -31,15 +30,10 @@ namespace WebUI.Controllers
         [HttpGet]
         public IActionResult EditProfile()
         {
-            var getCurrentClaims = new GetCurrentClaims(HttpContext.User.Claims);
-            var getCurrentClaimsInvoker = new Invoker<GetCurrentClaims>(getCurrentClaims);
+            _commander.ExecuteWithoutContext<GetCurrentClaims, object>(HttpContext.User.Claims);
+            _commander.Execute<GetUserData, object>(_commander.GetResult()[0]);
 
-            getCurrentClaimsInvoker.Invoke();
-
-            var getUserData = new GetUserData(_context, getCurrentClaims.User);
-            var getUserDataInvoker = new Invoker<GetUserData>(getUserData);
-
-            getUserDataInvoker.Invoke();
+            var getUserData = _commander.GetInstance<GetUserData>();
 
             return View(getUserData.FullData);
         }
@@ -52,17 +46,11 @@ namespace WebUI.Controllers
             if (ModelState.IsValid)
                 return View("EditProfile");
 
-            var getCurrentClaims = new GetCurrentClaims(HttpContext.User.Claims);
-            var getCurrentClaimsInvoker = new Invoker<GetCurrentClaims>(getCurrentClaims);
+            _commander.ExecuteWithoutContext<GetCurrentClaims, object>(HttpContext.User.Claims);
+            updateUserModel.UserName = _commander.GetInstance<GetCurrentClaims>().User.UserName;
+            _commander.Execute<UpdateUser, object>(updateUserModel);
 
-            getCurrentClaimsInvoker.Invoke();
-
-            updateUserModel.UserName = getCurrentClaims.User.UserName;
-
-            var updateUser = new UpdateUser(_context, updateUserModel);
-            var updateUserInvoker = new Invoker<UpdateUser>(updateUser);
-
-            updateUserInvoker.Invoke();
+            var updateUser = _commander.GetInstance<UpdateUser>();
 
             if (!updateUser.Status)
             {

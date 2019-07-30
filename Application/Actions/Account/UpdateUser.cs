@@ -56,5 +56,10 @@ namespace Application.Actions.Account
                 Status = true;
             }
         }
+
+        public object[] Result()
+        {
+            return new object[] { Status, ProcessMessage };
+        }
     }
 }

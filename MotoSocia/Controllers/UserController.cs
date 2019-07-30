@@ -1,4 +1,4 @@
-﻿using Application.Command;
+﻿using Application;
 using Application.Models.User;
 using Application.Actions.User;
 using Microsoft.AspNetCore.Mvc;
@@ -14,11 +14,11 @@ namespace WebUI.Controllers
 {
     public class UserController : Controller
     {
-        private Persistence.MotoDBContext _context;
+        private ICommander _commander;
 
-        public UserController(Persistence.MotoDBContext context)
+        public UserController(Application.ICommander commander)
         {
-            _context = context;
+            _commander = commander;
         }
 
         [Route("login")]
@@ -34,9 +34,8 @@ namespace WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var loginAction = new LoginAction(_context, user);
-                var command = new Invoker<LoginAction>(loginAction);
-                command.Invoke();
+                _commander.Execute<LoginAction, LoginUserModel>(user);
+                var loginAction = _commander.GetInstance<LoginAction>();
 
                 if (loginAction.LoggedInUserData != null && 
                     !string.IsNullOrEmpty(loginAction.LoggedInUserData.UserName) &&
@@ -74,10 +73,8 @@ namespace WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                var newUserAction = new NewUserAction(_context, user);
-                var command = new Invoker<NewUserAction>(newUserAction);
-
-                command.Invoke();
+                _commander.Execute<NewUserAction, NewUserModel>(user);
+                var newUserAction = _commander.GetInstance<NewUserAction>();
                 
                 if (newUserAction.Result)
                 {

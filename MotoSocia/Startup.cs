@@ -40,6 +40,8 @@ namespace MotoSocia
 
             services.AddScoped<MotoDBContext>();
 
+            services.AddScoped(typeof(ICommander), typeof(ContextCommander));
+
             services.AddRecaptcha(new RecaptchaOptions
             {
                 SiteKey = Configuration["Recaptcha:SiteKey"],

@@ -35,5 +35,10 @@ namespace Application.Actions.User
 
             Log.Write<LoginAction, DatabaseLog>(data != null);
         }
+
+        public object[] Result()
+        {
+            return new object[] { LoggedInUserData };
+        }
     }
 }

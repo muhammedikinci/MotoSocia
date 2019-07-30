@@ -37,5 +37,10 @@ namespace Application.Actions.Account
                 };
             }
         }
+
+        public object[] Result()
+        {
+            return new object[] { FullData };
+        }
     }
 }

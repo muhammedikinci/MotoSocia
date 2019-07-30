@@ -43,5 +43,10 @@ namespace Application.Actions.User
 
             Log.Write<NewUserAction, DatabaseLog>(Result);
         }
+
+        object[] ICommand.Result()
+        {
+            return new object[] { Result };
+        }
     }
 }
