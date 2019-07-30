@@ -31,6 +31,22 @@ namespace Application
             invoker.Invoke();
         }
 
+        public void Execute<TCommandType, T>(object[] datas) where TCommandType : ICommand
+        {
+            object[] array = new object[datas.Length + 1];
+
+            array[0] = _context;
+            for (int i = 0; i < datas.Length; i++)
+            {
+                array[i + 1] = datas[i];
+            }
+
+            command = (TCommandType)Activator.CreateInstance(typeof(TCommandType), array);
+
+            Invoker<TCommandType> invoker = new Invoker<TCommandType>((TCommandType)command);
+            invoker.Invoke();
+        }
+
         public void ExecuteWithoutContext<TCommandType, T>(T entities) where TCommandType : ICommand
         {
             command = (TCommandType)Activator.CreateInstance(typeof(TCommandType), new object[] { entities });
@@ -42,6 +58,14 @@ namespace Application
         public void ExecuteWithoutContext<TCommandType, T>(IList<T> entities) where TCommandType : ICommand
         {
             command = (TCommandType)Activator.CreateInstance(typeof(TCommandType), new object[] { entities });
+
+            Invoker<TCommandType> invoker = new Invoker<TCommandType>((TCommandType)command);
+            invoker.Invoke();
+        }
+
+        public void ExecuteWithoutContext<TCommandType, T>(object[] datas) where TCommandType : ICommand
+        {
+            command = (TCommandType)Activator.CreateInstance(typeof(TCommandType), datas);
 
             Invoker<TCommandType> invoker = new Invoker<TCommandType>((TCommandType)command);
             invoker.Invoke();
