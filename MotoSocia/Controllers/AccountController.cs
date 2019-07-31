@@ -11,7 +11,7 @@ namespace WebUI.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private Application.ICommander _commander;
+        private ICommander _commander;
 
         public AccountController(ICommander commander)
         {

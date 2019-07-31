@@ -47,7 +47,7 @@ namespace Application.Actions.Account
 
                     Context.SaveChanges();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     ProcessMessage = "Beklenmedik bir sorun oluştu.";
                     return;
