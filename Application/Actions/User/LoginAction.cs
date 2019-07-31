@@ -10,10 +10,10 @@ namespace Application.Actions.User
         private LoginUserModel User { get; set; }
         public NewUserModel LoggedInUserData { get; set; }
 
-        public LoginAction(IMotoDBContext Context, LoginUserModel User)
+        public LoginAction(Transport<LoginUserModel> transport)
         {
-            this.Context = Context;
-            this.User = User;
+            this.Context = transport.Dependencies.Context;
+            this.User = transport.Data;
         }
 
         public void Execute()

@@ -13,10 +13,10 @@ namespace Application.Actions.Account
         public string ProcessMessage = "";
         public bool Status = false;
 
-        public UpdateUser(IMotoDBContext context, UpdateUserModel user)
+        public UpdateUser(Transport<UpdateUserModel> transport)
         {
-            Context = context;
-            User = user;
+            Context = transport.Dependencies.Context;
+            User = transport.Data;
         }
 
         public void Execute()

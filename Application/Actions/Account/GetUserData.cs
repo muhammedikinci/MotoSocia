@@ -1,5 +1,6 @@
 ﻿using Application.Command;
 using Application.Models.User;
+using AutoMapper;
 using System.Linq;
 
 namespace Application.Actions.Account
@@ -7,14 +8,16 @@ namespace Application.Actions.Account
     public class GetUserData : ICommand
     {
         private IMotoDBContext context;
+        private IMapper mapper;
         private NewUserModel user;
 
         public NewUserModel FullData;
 
-        public GetUserData(IMotoDBContext context, NewUserModel user)
+        public GetUserData(Transport<NewUserModel> transport)
         {
-            this.context = context;
-            this.user = user;
+            context = transport.Dependencies.Context;
+            mapper = transport.Dependencies.Mapper;
+            user = transport.Data;
         }
 
         public void Execute()
@@ -29,12 +32,13 @@ namespace Application.Actions.Account
                 !string.IsNullOrEmpty(userData.Email) &&
                 !string.IsNullOrEmpty(userData.Name))
             {
-                FullData = new NewUserModel() {
-                    Name= userData.Name,
-                    Surname= userData.Surname,
-                    Email= userData.Email,
-                    UserName= userData.UserName
-                };
+                FullData = mapper.Map<NewUserModel>(userData);
+                //FullData = new NewUserModel() {
+                //    Name= userData.Name,
+                //    Surname= userData.Surname,
+                //    Email= userData.Email,
+                //    UserName= userData.UserName
+                //};
             }
         }
 

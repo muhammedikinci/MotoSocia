@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using PaulMiami.AspNetCore.Mvc.Recaptcha;
 using Application.Models.User;
 using Application.Models.Account;
+using System.Collections.Generic;
+using System.Security.Claims;
 
 namespace WebUI.Controllers
 {
@@ -20,7 +22,7 @@ namespace WebUI.Controllers
 
         public IActionResult Index()
         {
-            _commander.ExecuteWithoutContext<GetCurrentClaims, object>(HttpContext.User.Claims);
+            _commander.Execute<GetCurrentClaims, IEnumerable<Claim>>(HttpContext.User.Claims);
 
             var getCurrentClaims = _commander.GetInstance<GetCurrentClaims>();
 
@@ -30,8 +32,8 @@ namespace WebUI.Controllers
         [HttpGet]
         public IActionResult EditProfile()
         {
-            _commander.ExecuteWithoutContext<GetCurrentClaims, object>(HttpContext.User.Claims);
-            _commander.Execute<GetUserData, object>(_commander.GetResult()[0]);
+            _commander.Execute<GetCurrentClaims, IEnumerable<Claim>>(HttpContext.User.Claims);
+            _commander.Execute<GetUserData, NewUserModel>((NewUserModel)_commander.GetResult()[0]);
 
             var getUserData = _commander.GetInstance<GetUserData>();
 
@@ -46,9 +48,9 @@ namespace WebUI.Controllers
             if (ModelState.IsValid)
                 return View("EditProfile");
 
-            _commander.ExecuteWithoutContext<GetCurrentClaims, object>(HttpContext.User.Claims);
+            _commander.Execute<GetCurrentClaims, IEnumerable<Claim>>(HttpContext.User.Claims);
             updateUserModel.UserName = _commander.GetInstance<GetCurrentClaims>().User.UserName;
-            _commander.Execute<UpdateUser, object>(updateUserModel);
+            _commander.Execute<UpdateUser, UpdateUserModel>(updateUserModel);
 
             var updateUser = _commander.GetInstance<UpdateUser>();
 

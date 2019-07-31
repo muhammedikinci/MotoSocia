@@ -1,18 +1,21 @@
 ﻿using Application.Models.User;
 using Application.Command;
 using System.Linq;
+using AutoMapper;
 
 namespace Application.Actions.User
 {
     public class NewUserAction : ICommand
     {
         private IMotoDBContext Context { get; set; }
+        private IMapper mapper { get; set; }
         private NewUserModel User { get; set; }
 
-        public NewUserAction(IMotoDBContext Context, NewUserModel User)
+        public NewUserAction(Transport<NewUserModel> transport)
         {
-            this.Context = Context;
-            this.User = User;
+            Context = transport.Dependencies.Context;
+            mapper = transport.Dependencies.Mapper;
+            User = transport.Data;
         }
 
         public bool Result = false;
@@ -28,14 +31,7 @@ namespace Application.Actions.User
                 !string.IsNullOrEmpty(User.Surname) &&
                 !string.IsNullOrEmpty(User.Name))
             {
-                Context.Users.Add(new Domain.Entities.User
-                {
-                    UserName = User.UserName,
-                    Email = User.Email,
-                    Name = User.Name,
-                    Password = User.Password,
-                    Surname = User.Surname
-                });
+                Context.Users.Add(mapper.Map<Domain.Entities.User>(User));
 
                 Context.SaveChanges();
                 Result = true;

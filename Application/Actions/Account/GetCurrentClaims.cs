@@ -12,9 +12,9 @@ namespace Application.Actions.Account
         IEnumerable<Claim> Claims;
         public NewUserModel User = new NewUserModel();
         
-        public GetCurrentClaims(IEnumerable<Claim> claims)
+        public GetCurrentClaims(Transport<IEnumerable<Claim>> transport)
         {
-            Claims = claims;
+            Claims = transport.Data;
         }
 
         public void Execute()

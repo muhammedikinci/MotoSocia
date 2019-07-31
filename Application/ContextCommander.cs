@@ -1,23 +1,38 @@
 ﻿using Application.Command;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using AutoMapper;
 
 namespace Application
 {
     public class ContextCommander : ICommander 
     {
         private ICommand command;
+        private readonly IMapper _mapper;
         private readonly IMotoDBContext _context;
+        private Dependencies _dependencies;
 
-        public ContextCommander(IMotoDBContext context)
+        public ContextCommander(IMotoDBContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
+
+            _dependencies = new Dependencies()
+            {
+                Context = context,
+                Mapper = mapper
+            };
         }
 
         public void Execute<TCommandType, T> (T entity) where TCommandType : ICommand
         {
-            command = (TCommandType)Activator.CreateInstance(typeof(TCommandType), new object[] { _context, entity });
+            Transport<T> transport = new Transport<T>()
+            {
+                Dependencies = _dependencies,
+                Data = entity
+            };
+
+            command = (TCommandType)Activator.CreateInstance(typeof(TCommandType), transport);
 
             Invoker<TCommandType> invoker = new Invoker<TCommandType>((TCommandType)command);
             invoker.Invoke();
@@ -25,7 +40,13 @@ namespace Application
 
         public void Execute<TCommandType, T>(IList<T> entities) where TCommandType : ICommand
         {
-            command = (TCommandType)Activator.CreateInstance(typeof(TCommandType), new object[] { _context, entities });
+            Transport<T> transport = new Transport<T>()
+            {
+                Dependencies = _dependencies,
+                DataList = entities
+            };
+
+            command = (TCommandType)Activator.CreateInstance(typeof(TCommandType), transport);
 
             Invoker<TCommandType> invoker = new Invoker<TCommandType>((TCommandType)command);
             invoker.Invoke();
@@ -33,39 +54,13 @@ namespace Application
 
         public void Execute<TCommandType, T>(object[] datas) where TCommandType : ICommand
         {
-            object[] array = new object[datas.Length + 1];
-
-            array[0] = _context;
-            for (int i = 0; i < datas.Length; i++)
+            Transport<T> transport = new Transport<T>()
             {
-                array[i + 1] = datas[i];
-            }
+                Dependencies = _dependencies,
+                MultipleObjects = datas
+            };
 
-            command = (TCommandType)Activator.CreateInstance(typeof(TCommandType), array);
-
-            Invoker<TCommandType> invoker = new Invoker<TCommandType>((TCommandType)command);
-            invoker.Invoke();
-        }
-
-        public void ExecuteWithoutContext<TCommandType, T>(T entities) where TCommandType : ICommand
-        {
-            command = (TCommandType)Activator.CreateInstance(typeof(TCommandType), new object[] { entities });
-
-            Invoker<TCommandType> invoker = new Invoker<TCommandType>((TCommandType)command);
-            invoker.Invoke();
-        }
-
-        public void ExecuteWithoutContext<TCommandType, T>(IList<T> entities) where TCommandType : ICommand
-        {
-            command = (TCommandType)Activator.CreateInstance(typeof(TCommandType), new object[] { entities });
-
-            Invoker<TCommandType> invoker = new Invoker<TCommandType>((TCommandType)command);
-            invoker.Invoke();
-        }
-
-        public void ExecuteWithoutContext<TCommandType, T>(object[] datas) where TCommandType : ICommand
-        {
-            command = (TCommandType)Activator.CreateInstance(typeof(TCommandType), datas);
+            command = (TCommandType)Activator.CreateInstance(typeof(TCommandType), transport);
 
             Invoker<TCommandType> invoker = new Invoker<TCommandType>((TCommandType)command);
             invoker.Invoke();

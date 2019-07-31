@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using System;
 using PaulMiami.AspNetCore.Mvc.Recaptcha;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using AutoMapper;
 
 namespace MotoSocia
 {
@@ -39,6 +40,8 @@ namespace MotoSocia
             services.AddDbContext<IMotoDBContext, MotoDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("MotoSociaDatabase")));
 
             services.AddScoped<MotoDBContext>();
+
+            services.AddAutoMapper(typeof(MapperConfig));
 
             services.AddScoped(typeof(ICommander), typeof(ContextCommander));
 
