@@ -1,0 +1,63 @@
+﻿@model Application.Models.Group.CreateGroupModel
+
+@{
+    ViewData["Title"] = "Grup Oluştur";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateGroupPost" id="creategroupform" data-parsley-validate="">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Grup İsmi</label>
+                <input asp-for="Name" class="form-control" data-parsley-length="[5, 50]" required="" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MemberLimit" class="control-label">Kişi Limiti (Maks. 80)</label>
+                <input asp-for="MemberLimit" class="form-control" required="" />
+                <span asp-validation-for="MemberLimit" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GroupIcon" class="control-label">Grup Icon'u</label>
+                <input asp-for="GroupIcon" class="form-control" required="" />
+                <span asp-validation-for="GroupIcon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label">Grup Açıklaması</label>
+                <input asp-for="Description" class="form-control" required="" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Web sitesi ve sosyal meyda linkleri</label>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="mediaLink1Title" value="" placeholder="Title" />
+                    <input type="text" class="form-control" name="mediaLink1" value="" placeholder="Link" />
+                </div>
+                <br />
+                <div class="form-group">
+                    <input type="text" class="form-control" name="mediaLink2Title" value="" placeholder="Title" />
+                    <input type="text" class="form-control" name="mediaLink2" value="" placeholder="Link" />
+                </div>
+                <br />
+                <div class="form-group">
+                    <input type="text" class="form-control" name="mediaLink3Title" value="" placeholder="Title" />
+                    <input type="text" class="form-control" name="mediaLink3" value="" placeholder="Link" />
+                </div>
+            </div>
+            <div class="invalid-form-error-message"></div>
+            <recaptcha />
+            <div class="form-group">
+                <input type="submit" value="Oluştur" class="btn btn-primary" id="creategroupbutton" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <recaptcha-script />
+}

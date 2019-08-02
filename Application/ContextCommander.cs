@@ -8,15 +8,10 @@ namespace Application
     public class ContextCommander : ICommander 
     {
         private ICommand command;
-        private readonly IMapper _mapper;
-        private readonly IMotoDBContext _context;
         private Dependencies _dependencies;
 
         public ContextCommander(IMotoDBContext context, IMapper mapper)
         {
-            _context = context;
-            _mapper = mapper;
-
             _dependencies = new Dependencies()
             {
                 Context = context,
@@ -44,20 +39,6 @@ namespace Application
             {
                 Dependencies = _dependencies,
                 DataList = entities
-            };
-
-            command = (TCommandType)Activator.CreateInstance(typeof(TCommandType), transport);
-
-            Invoker<TCommandType> invoker = new Invoker<TCommandType>((TCommandType)command);
-            invoker.Invoke();
-        }
-
-        public void Execute<TCommandType, T>(object[] datas) where TCommandType : ICommand
-        {
-            Transport<T> transport = new Transport<T>()
-            {
-                Dependencies = _dependencies,
-                MultipleObjects = datas
             };
 
             command = (TCommandType)Activator.CreateInstance(typeof(TCommandType), transport);

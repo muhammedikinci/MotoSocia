@@ -10,6 +10,10 @@
     {
         "buttonSelector": "#editprofilebutton",
         "formSelector": "#editprofileform"
+    },
+    {
+        "buttonSelector": "#creategroupbutton",
+        "formSelector": "#creategroupform"
     }
 ];
 
