@@ -44,6 +44,7 @@ Veritabanı Connection String leri appsettings.json içerisinde ki ConnectionStr
 * SendGrid (9.11.0)
 * PaulMiami Recaptcha (1.2.1)(Google Recaptcha v2)
 * NPM (6.9.2)
+* AutoMapper
 
 ## Proje Yapısı
 
